@@ -1,39 +1,50 @@
 class Savings {
 
-    constructor(id, description, balance) {
+    constructor(id, desc) {
         this.id = id;
-        this.description = description
-        this.balance = balance;
+        this.desc = desc
+        this.bal = 0;
     }
     
-    withdraw(balance) {
-        this.balance -= balance;
-        if(this.withdraw > balance);
+    deposit(amt) {
+        if(typeof amt !== "number") {
+            console.error("Amount is not a number");
+            return false;
+        }
+        if(amt <= 0) {
+            console.error("Amount must be gt zero");
+            return false;
+        }
+        this.bal += amt;
+        return true;
     }
 
-    deposit(balance) {
-        this.balance += balance;
-        if(this.deposit !== 0);
+    withdraw(amt) {
+        if(typeof amt !== "number") {
+            console.error("Amount is not a number");
+            return false;
+        }
+        if(amt <= 0) {
+            console.error("Amount must be gt zero");
+            return false;
+        }   
+        if(amt > this.bal) {
+            console.error("Insufficient funds")
+            return false;
+        }
+        this.bal -= amt;
+        return true;
     }
 
-    // transfer(balance) {
-    //     this.balance += balance;
-    //     this.id(balance.transfer);
-    // }
-
-
-    print() {
-        return `${this.id} | ${this.description} | ${this.balance}`;
+    transfer(amt, toAcct) {
+        if(this.withdraw(amt)) {
+            toAcct.deposit(amt)
+            return true;
+        }
+        return false;
     }
+
 }
 
-let sav1 = new Savings(1, "Bob", 0.0);
-sav1.deposit(500.00)
-sav1.withdraw(300.00);
-console.log(sav1.print());
-
-let sav2 = new Savings(2, "Marigold", 10000.00);
-sav2.withdraw(1000.00);
-sav2.deposit(3200.00);
-console.log(sav2.print());
+let s1 = new Savings(1, "Sav1")
 
