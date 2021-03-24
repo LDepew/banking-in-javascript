@@ -8,12 +8,12 @@ class Savings {
     
     withdraw(balance) {
         this.balance -= balance;
-        this.withdraw <= balance;
+        if(this.withdraw > balance);
     }
 
     deposit(balance) {
         this.balance += balance;
-        this.deposit > 0;
+        if(this.deposit !== 0);
     }
 
     // transfer(balance) {
@@ -28,7 +28,7 @@ class Savings {
 }
 
 let sav1 = new Savings(1, "Bob", 0.0);
-sav1.deposit(500.00);
+sav1.deposit(500.00)
 sav1.withdraw(300.00);
 console.log(sav1.print());
 
